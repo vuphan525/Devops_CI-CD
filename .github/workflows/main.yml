@@ -1,0 +1,31 @@
+name: CI/CD Pipeline # Tên của quy trình
+
+# 1. Khi nào thì chạy? Khi có ai đó 'push' code vào nhánh 'main'
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest # Mượn một con máy ảo của GitHub để chạy lệnh
+
+    steps:
+      # Bước A: Copy code từ GitHub vào máy ảo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Bước B: Đăng nhập vào Docker Hub bằng "chìa khóa" đã cất ở trên
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Bước C: Build Docker Image và đẩy (Push) lên Docker Hub
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          # Thay 'your-docker-username' bằng tên thật của bạn trên Docker Hub
+          tags: vuphan525/devops-demo:latest
