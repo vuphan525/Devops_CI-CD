@@ -5,7 +5,7 @@ const port = 3000;
 // Route chính
 app.get('/', (req, res) => {
   console.log(`[LOG] ${new Date().toLocaleString()}: Có người vừa ghé thăm web! hihi`);
-  res.send('<h1>Chào mừng bạn đến với Hệ Thống DevOps Demo!</h1><p>Hệ thống đang chạy ổn định.</p>');
+  res.send('<h1>Chào mừng bạn đến với Hệ Thống DevOps Demo!</h1><p>Hệ thống đang chạy ổn định.Hihi</p>');
 });
 
 // Route giả lập lỗi để test sau này
