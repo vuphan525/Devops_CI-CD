@@ -17,3 +17,5 @@ app.get('/error', (req, res) => {
 app.listen(port, () => {
   console.log(`App đang chạy tại http://localhost:${port}`);
 });
+
+// Fix token permission
